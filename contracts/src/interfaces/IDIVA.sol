@@ -73,14 +73,14 @@ interface IDIVA {
         address indexed shortRecipient,
         uint256 collateralAmount,
         address permissionedERC721Token
-    );
+    ); // @audit-low: unused event
 
     event LiquidityAdded(
         bytes32 indexed poolId,
         address indexed longRecipient,
         address indexed shortRecipient,
         uint256 collateralAmount
-    );
+    ); // @audit-low: unused event
 
     /**
      * @notice Function to submit the final reference value for a given pool Id.

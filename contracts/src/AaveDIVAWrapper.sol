@@ -27,6 +27,7 @@ contract AaveDIVAWrapper is AaveDIVAWrapperCore, ReentrancyGuard {
     /**
      * @dev See {IAaveDIVAWrapper-createContingentPool}.
      */
+     // @audit-case: Check if i can call many times same function with same args.
     function createContingentPool(PoolParams calldata _poolParams) external override nonReentrant returns (bytes32) {
         return _createContingentPool(_poolParams);
     }

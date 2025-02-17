@@ -81,7 +81,7 @@ interface IAaveDIVAWrapper {
 
     // Emitted when a new contingent pool is created via `createContingentPool`.
     // Added to allow identification of pools created via the AaveDIVAWrapper contract.
-    event PoolIssued(bytes32 indexed poolId);
+    event PoolIssued(bytes32 indexed poolId); 
 
     // Emitted when owner claims the accrued yield via `claimYield`.
     event YieldClaimed(

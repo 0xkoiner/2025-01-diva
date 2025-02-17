@@ -7,11 +7,14 @@ import {IWToken} from "./interfaces/IWToken.sol";
 /**
  * @dev See {IWToken}.
  */
+ // @audit-medium: Missconfusing of owner. If owner of WTOKEN is same owner of AaveDIVAWrapperCore, it should be passed as parameter in constructor
 contract WToken is IWToken, ERC20 {
-    address private _owner; // address(this)
-    uint8 private _decimals;
+    address private _owner; // address(this) // @audit-question: why not to do immutable _owner? no function to change!!
+    uint8 private _decimals; // @audit-question: why decimal here if have call decimal in IWToken?
 
     constructor(string memory symbol_, uint8 decimals_, address owner_) ERC20(symbol_, symbol_) {
+        // audit-question: the symbol should be with prefix `W`?
+        // audit-question: the name should be same as symbol?
         // name = symbol for simplicity
         _owner = owner_;
         _decimals = decimals_;

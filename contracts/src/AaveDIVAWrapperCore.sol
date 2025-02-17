@@ -90,9 +90,9 @@ abstract contract AaveDIVAWrapperCore is IAaveDIVAWrapper, Ownable2Step {
         // The wToken decimals are aligned with those of the collateral token and the aToken.
         // This contract is set as the owner and has exclusive rights to mint and burn the wToken.
         WToken _wTokenContract = new WToken(
-            string(abi.encodePacked("w", _collateralTokenContract.symbol())),
+            string(abi.encodePacked("w", _collateralTokenContract.symbol())),// @audit-low: Symbol and Name in ERC20 will be the same!
             _collateralTokenContract.decimals(),
-            address(this) // wToken owner
+            address(this) // wToken owner // probably the owner will be this contract
         );
 
         address _wToken = address(_wTokenContract);
@@ -147,7 +147,7 @@ abstract contract AaveDIVAWrapperCore is IAaveDIVAWrapper, Ownable2Step {
                 cap: _poolParams.cap,
                 gradient: _poolParams.gradient,
                 collateralAmount: _poolParams.collateralAmount,
-                collateralToken: _collateralTokenToWToken[_poolParams.collateralToken], // Using the address of the wToken here
+                collateralToken: _collateralTokenToWToken[_poolParams.collateralToken],// @audit-question: Why not using directly _wToken // Using the address of the wToken here
                 dataProvider: _poolParams.dataProvider,
                 capacity: _poolParams.capacity,
                 longRecipient: _poolParams.longRecipient,
