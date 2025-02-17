@@ -69,6 +69,17 @@ src/
 
 ```
 
+## @audit
+
+All Findings in `@audit` and full report.
+
+```js
+├── @audit
+│   ├── Report
+│       └── 2025-01-pieces-protocol.pdf
+
+```
+
 ## Compatibilities
 
 AaveDIVAWrapper contract will be deployed on EVM-compatible chains where both DIVA Protocol and Aave V3 are available. These include:
